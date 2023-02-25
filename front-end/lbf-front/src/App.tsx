@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import { testUpload } from './functions/test';
 import './App.css';
+import { Found } from './Components/Found';
+
+const clickTest = () => {
+  testUpload();
+  console.log("test")
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <div onClick={clickTest}> Click me!! </div> */}
+      <Found/>
     </div>
   );
 }
