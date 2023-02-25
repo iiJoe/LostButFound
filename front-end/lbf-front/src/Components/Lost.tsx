@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/app';
+import { useState, useEffect } from 'react';
 import 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore';
 import { db } from '../functions/firestore';
 import { collection, getDocs } from "firebase/firestore";
+import "../css/lost.css"
 
 interface CategoryData {
   id: string;
@@ -11,12 +10,16 @@ interface CategoryData {
 }
 
 interface ItemData {
-  [key: string]: any;
+  id: string,
+  handle: string,
+  description: string,
+  ImageUrl: string
 }
 
-const Whatever = () => {
+const Lost = () => {
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [itemData, setItemData] = useState<ItemData[]>([]);
+  const [activeButton, setActiveButton] = useState("")
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -41,47 +44,44 @@ const Whatever = () => {
     const data: ItemData[] = [];
 
     querySnapshot.forEach((doc) => {
-      data.push({
-        ...doc.data(),
-        id: doc.id,
-      });
+      data.push(doc.data() as ItemData)
     });
 
     setItemData(data);
+    setActiveButton(categoryId);
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div className="lost-container">
+      <div className="lost-category">
         {categoryData.map((category) => (
-          <button
+          <div
+            className={activeButton === category.id ? "category-button active" : "category-button"}
             key={category.id}
-            onClick={() => handleCategoryClick(category.id)}
-            style={{ marginRight: 10, marginBottom: 10, padding: '10px 20px' }}
-          >
+            onClick={() => handleCategoryClick(category.id)}>
             {category.id}
-          </button>
+          </div>
         ))}
       </div>
       {itemData.length > 0 ? (
-        <div>
+        <div className="item-container">
           {itemData.map((item) => (
-            <div key={item.id}>
-              {Object.keys(item).map((key) => (
-                key === 'ImageUrl' ? (
-                  <img key={key} src={item[key]} alt={item['Name']} />
-                ) : (
-                  <p key={key}>{`${key}: ${item[key]}`}</p>
-                )
-              ))}
+            <div key={item.id} className="item-card">
+              <img src={item.ImageUrl} alt="" />
+              <div>{item.handle}</div>
+              <div>{item.description}</div>
             </div>
           ))}
         </div>
       ) : (
-        <p>Select a category to view items.</p>
+        <div className="item-preview">
+          <h1>Select a category to view items.</h1>
+          <img src="/images/lost.jpg" alt="lost.jpg"/>
+        </div>
       )}
+
     </div>
   );
 };
 
-export { Whatever };
+export { Lost };

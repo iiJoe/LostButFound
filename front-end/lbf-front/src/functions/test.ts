@@ -4,7 +4,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { FoundFormProps } from "../functions/types"
 const { v4: uuidv4 } = require('uuid');
 
-const testFile = async (form: FoundFormProps) => {
+const submitForm = async (form: FoundFormProps) => {
   const uniqueID = uuidv4();
   const storageRef = ref(storage, `items/${uniqueID}`)
 
@@ -36,13 +36,10 @@ const testFile = async (form: FoundFormProps) => {
         ImageUrl: url,
         description: form.description,
         handle: form.handle
-      })  
-    console.log("Document written with ID: ", docRef.id);
-  });
+      })
+      console.log("Document written with ID: ", docRef.id);
+    });
   }
-  
-
-
 }
 
-export { testFile }
+export { submitForm }

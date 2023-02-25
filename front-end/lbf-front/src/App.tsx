@@ -1,6 +1,6 @@
 import React from 'react';
 import { Found } from './Components/Found';
-import { Whatever } from './Components/Whatever';
+import { Lost } from './Components/Lost';
 import { Main } from './Components/Main';
 import { Nav } from './Components/Nav';
 
@@ -15,13 +15,13 @@ const App = () => {
 
   switch(page) {
     case "main":
-      component = <Main switchTo = {switchPage}/>;
+      component = <Main switchTo={switchPage}/>;
       break;
     case "found":
-      component = <Found />;
+      component = <Found switchTo={switchPage} />;
       break;
     case "lost":
-      component = <Whatever />
+      component = <Lost />
       break;
     default:
       component = <Main switchTo={switchPage}/>;
