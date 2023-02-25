@@ -14,20 +14,33 @@ const testFile = async (form: FoundFormProps) => {
 
   const headers = new Headers();
   headers.append('header_url_key', url);
+
   const response = await fetch('http://localhost:5000/api/url', {
     method: 'GET',
-    headers: headers
+    headers: headers,
   })
+
   const categories = await response.json()
-  if (categories.length == 0)
-  categories.forEach(async (category: string )=> {
-    const docRef = await addDoc(collection(db, "Categories", category, "Items"), {
+  if (categories.length === 0) {
+    const docRef = await addDoc(collection(db, "Categories", "Others", "Items"), {
       ImageUrl: url,
       description: form.description,
       handle: form.handle
     })
     console.log("Document written with ID: ", docRef.id);
+  }
+  else {
+    categories.forEach(async (category: string )=> {
+      console.log(category)
+      const docRef = await addDoc(collection(db, "Categories", category, "Items"), {
+        ImageUrl: url,
+        description: form.description,
+        handle: form.handle
+      })  
+    console.log("Document written with ID: ", docRef.id);
   });
+  }
+  
 
 
 }
