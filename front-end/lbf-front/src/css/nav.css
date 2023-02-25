@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  background-color: aquamarine;
+}
+
+.nav > .nav-name {
+  align-self: center;
+  margin: 0 1em;
+  font-size: 24px;
+}

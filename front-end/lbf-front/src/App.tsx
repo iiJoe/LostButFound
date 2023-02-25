@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Found } from './Components/Found';
+import { Whatever } from './Components/Whatever';
+import { Main } from './Components/Main';
+import { Nav } from './Components/Nav';
 
-function App() {
+const App = () => {
+  const [page,setPage] = React.useState("main")
+
+  const switchPage = (newPage: string) => {
+    setPage(newPage)
+  }
+
+  let component = <Main switchTo={switchPage} />
+
+  switch(page) {
+    case "main":
+      component = <Main switchTo = {switchPage}/>;
+      break;
+    case "found":
+      component = <Found />;
+      break;
+    case "lost":
+      component = <Whatever />
+      break;
+    default:
+      component = <Main switchTo={switchPage}/>;
+      break;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Nav switchTo={switchPage}/>
+      <div className="body">
+      {component}
+      </div>
     </div>
+    
   );
 }
 
