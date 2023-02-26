@@ -11,7 +11,7 @@ const Found = (props: PageProps) => {
     date: null,
   });
   const [image, setImage] = useState("")
-  const [body, setBody] = useState("success")
+  const [body, setBody] = useState("form")
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

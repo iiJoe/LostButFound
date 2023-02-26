@@ -25,7 +25,8 @@ const submitForm = async (form: FoundFormProps) => {
     const docRef = await addDoc(collection(db, "Categories", "Others", "Items"), {
       ImageUrl: url,
       description: form.description,
-      handle: form.handle
+      handle: form.handle,
+      date: new Date()
     })
     console.log("Document written with ID: ", docRef.id);
   }
