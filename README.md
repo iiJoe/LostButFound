@@ -32,7 +32,7 @@ We integrated our python machine learning model together with a flask server, wh
 
 - Enhance the user interface: The current version of our web application has minimal functionality needed for this hackathon. We can improve the user interface to make it more user-friendly and visually appealing.
 
-- Test the app with real users: To improve the quality of our application, we need NTU students to test it and gather feedback to see how we can improve the application further.
+- Test the app with real NTU student users: To improve the quality of our application, we need NTU students to test it and gather feedback to see how we can improve the application further.
 
 # Contributions
 This project would not have been possible without:
