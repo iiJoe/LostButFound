@@ -1,0 +1,75 @@
+.lost-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.lost-category {
+  display: flex;
+  flex-direction: row;
+  margin: 1em 0;
+}
+
+.category-button {
+  background-color: #04AA6D;
+  border: 1px solid green;
+  color: white;
+  padding: 1em;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.lost-category .category-button:not(:last-child) {
+  border-right: none;
+}
+
+.lost-category .category-button:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.lost-category .category-button:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.lost-category .category-button:hover {
+  background-color: #3e8e41;
+}
+
+.lost-category .category-button.active {
+  background-color: #166534;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  row-gap: 1em;
+  flex-wrap: wrap;
+}
+
+.item-container > .item-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  row-gap: 2em;
+  padding: 2em;
+  background-color: #d9d9d9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 25%;
+}
+
+.item-container > .item-card > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 4px 4px 0 0;
+}
+
+.item-preview > img {
+  max-height: 50vh;
+}

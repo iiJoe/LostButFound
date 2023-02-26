@@ -1,0 +1,13 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  background-color: #008080;
+  color: white;
+}
+
+.nav > .nav-name {
+  align-self: center;
+  margin: 0 1em;
+  font-size: 24px;
+}

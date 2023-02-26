@@ -1,0 +1,41 @@
+.found-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.found-container > img {
+  max-height: 40vh;
+}
+
+.found-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.found-form  > .found-form-input {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+.found-form > .selected-image {
+  max-width: 200px;
+  margin: 1em 0;
+}
+
+.success-message {
+  align-self: center;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.success-actions > .success-action {
+  padding: 1em;
+  margin: 1em;
+  background-color: #808080;
+  color: white;
+  border-radius: 10px;
+}
