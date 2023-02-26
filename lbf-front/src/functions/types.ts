@@ -7,6 +7,7 @@ interface FoundFormProps {
   handle: string;
   description: string;
   image: File | null;
+  date: Date | null;
 }
 
 export type { PageProps, FoundFormProps }

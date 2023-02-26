@@ -1,7 +1,7 @@
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "./firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import { FoundFormProps } from "../functions/types"
+import { FoundFormProps } from "./types"
 const { v4: uuidv4 } = require('uuid');
 
 const submitForm = async (form: FoundFormProps) => {
@@ -35,7 +35,8 @@ const submitForm = async (form: FoundFormProps) => {
       const docRef = await addDoc(collection(db, "Categories", category, "Items"), {
         ImageUrl: url,
         description: form.description,
-        handle: form.handle
+        handle: form.handle,
+        date: new Date()
       })
       console.log("Document written with ID: ", docRef.id);
     });

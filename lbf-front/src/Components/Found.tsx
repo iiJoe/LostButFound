@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitForm } from '../functions/test';
+import { submitForm } from '../functions/api';
 import "../css/found.css"
 import { FoundFormProps, PageProps } from '../functions/types';
 
@@ -7,10 +7,11 @@ const Found = (props: PageProps) => {
   const [form, setForm] = useState<FoundFormProps>({
     handle: "",
     description: "",
-    image: null
+    image: null,
+    date: null,
   });
   const [image, setImage] = useState("")
-  const [body, setBody] = useState("form")
+  const [body, setBody] = useState("success")
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,8 +49,9 @@ const Found = (props: PageProps) => {
     setBody("form")
   }
 
-  const FoundForm = () => {
-    return (
+  return (
+    <>
+    {body === "form" ?
       <div className="found-container">
         <h1> Report a Lost Item :) </h1>
         <form onSubmit={handleSubmit} className="found-form">
@@ -73,21 +75,15 @@ const Found = (props: PageProps) => {
 
           <button type="submit">Submit</button>
         </form>
-      </div>
-    )
-  }
-
-  const Loading = () => {
-    return (
+      </div>: <></>}
+    {
+      body === "loading" ?
       <>
         <img src="/images/loading.webp" alt="loading"></img>
         <h1>Upload in progress...</h1>
-      </>
-    )
-  }
-
-  const Success = () => {
-    return (
+      </>: <></>
+    }
+    {body === "success" ?
       <div className="found-container">
         <img src="/images/found.jpg" alt="found.jpg"/>
         <h1 className="success-message">Upload Successful!</h1>
@@ -95,30 +91,7 @@ const Found = (props: PageProps) => {
           <div className="success-action" onClick={() => props.switchTo("main")}>Return to home</div>
           <div className="success-action" onClick={resubmitForm}>Submit another lost item</div>
         </div>
-      </div>
-    )
-  }
-
-  let component = <FoundForm/>;
-
-  switch(body) {
-    case "form":
-      component = <FoundForm/>;
-      break;
-      case "loading":
-        component = <Loading/>
-        break;
-      case "success":
-        component = <Success/>
-        break;
-      default:
-        component = <FoundForm/>
-        break;
-  }
-
-  return (
-    <>
-    {component}
+      </div> : <></>}
     </>
   )
 }

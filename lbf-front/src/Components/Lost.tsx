@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'firebase/firestore';
 import { db } from '../functions/firestore';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import "../css/lost.css"
 
 interface CategoryData {
@@ -40,7 +40,7 @@ const Lost = () => {
   }, []);
 
   const handleCategoryClick = async (categoryId: string) => {
-    const querySnapshot = await getDocs(collection(db, `Categories/${categoryId}/Items`));
+    const querySnapshot = await getDocs(query(collection(db, `Categories/${categoryId}/Items`), orderBy("date", "desc")));
     const data: ItemData[] = [];
 
     querySnapshot.forEach((doc) => {
