@@ -112,12 +112,12 @@ def main_function(url_inserted):
 
     # Print the detected labels and their confidence levels
     for i in range(len(detections['detection_scores'])):
-        if detections['detection_scores'][i] >= 0.6:
+        if detections['detection_scores'][i] >= 0.9: #adjust the confidence level to 0.9 for detection
             label = category_index[detections['detection_classes'][i]+label_id_offset]['name']
             confidence = detections['detection_scores'][i]
             if label not in unique_list:
                 unique_list.append(label)
-            #print('Detected label:', label, 'with confidence:', confidence)
+            #print('Detected label:', label, 'with confidence:', confidence) 
 
     
     
